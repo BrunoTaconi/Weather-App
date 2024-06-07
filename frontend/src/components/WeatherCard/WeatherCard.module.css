@@ -1,0 +1,16 @@
+.weatherGlobal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.weatherCard {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    width: 650px;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.2);
+}
