@@ -3,14 +3,146 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    margin-top: 1.5rem;
+}
+
+.topContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bottomContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .weatherCard {
     background-color: #fff;
     display: flex;
     justify-content: space-between;
-    width: 650px;
+    width: 485px;
+    height: 220px;
     border-radius: 2rem;
     padding: 2rem;
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.2);
+}
+
+.WeatherCardRightContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -60px;
+    margin-right: -40px;
+}
+
+.WeatherCardRightContent > p{
+    color: #585858;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.temperatureBox {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    gap: 12px;
+}
+
+.sunriseBox {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.sunriseInnerBox {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sunriseInnerBox > p{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.sunriseInnerBox > span{
+    font-weight: 500;
+    color: #7A7A7A;
+}
+
+
+.temperatureBox h3 {
+    color: #7A7A7A;
+}
+
+.feelsLikeCard, .humidityCard {
+    height: 210px;
+    width: 165px;
+    background-color: #1F3D96;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    justify-content: space-between;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.2);
+}
+
+.feelsLikeCard>p, .humidityCard>p {
+    font-size: 1.3rem;
+    color: #EEF2FF;
+    font-weight: 500;
+}
+
+.spanText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #A5BAF8;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.spanText > p {
+    font-size: 1.4rem;
+}
+
+.forecastContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.forecastCard {
+    height: 210px;
+    width: 157px;
+    background-color: #3462E7;
+    color: #FFFFFF;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    justify-content: space-between;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.2);
+}
+
+.forecastCard > p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.forecastTemp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
 }

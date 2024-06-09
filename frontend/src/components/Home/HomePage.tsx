@@ -5,6 +5,7 @@ import WeatherCard from '../WeatherCard/WeatherCard';
 import { fetchWeather, fetchForecast } from '@/utils/api';
 import styles from './Home.module.css';
 import { FaSearch } from "react-icons/fa";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const HomePage: React.FC = () => {
     const [city, setCity] = useState('');
@@ -43,26 +44,38 @@ const HomePage: React.FC = () => {
                         placeholder='Enter city name'
                         className={styles.searchInput}
                     />
-                    <FaSearch className={styles.searchIcon}/>
+                    <FaSearch className={styles.searchIcon} />
                     <button className={styles.searchButton} onClick={handleSearch}>Search</button>
                 </div>
-
-                {weather && (
-                    <WeatherCard
-                        city={weather.name}
-                        country={weather.country}
-                        temperature={weather.temp}
-                        feelsLike={weather.feels_like}
-                        humidity={weather.humidity}
-                        description={weather.description}
-                        icon={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-                        sunrise={weather.sunrise}
-                        sunset={weather.sunset}
-                        maxTemp={weather.temp_max}
-                        minTemp={weather.temp_min}
-                        forecast={forecast}
-                    />
-                )}
+                <TransitionGroup>
+                    {weather && (
+                        <CSSTransition
+                            key={weather.name}
+                            timeout={500}
+                            classNames={{
+                                enter: styles.weatherEnter,
+                                enterActive: styles.weatherEnterActive,
+                                exit: styles.weatherExit,
+                                exitActive: styles.weatherExitActive,
+                            }}
+                        >
+                            <WeatherCard
+                                city={weather.name}
+                                country={weather.country}
+                                temperature={weather.temp}
+                                feelsLike={weather.feels_like}
+                                humidity={weather.humidity}
+                                description={weather.description}
+                                icon={`http://openweathermap.org/img/wn/${weather.icon}@4x.png`}
+                                sunrise={weather.sunrise}
+                                sunset={weather.sunset}
+                                maxTemp={weather.temp_max}
+                                minTemp={weather.temp_min}
+                                forecast={forecast}
+                            />
+                            </CSSTransition>
+                    )}
+                        </TransitionGroup>
             </main>
         </div>
     );

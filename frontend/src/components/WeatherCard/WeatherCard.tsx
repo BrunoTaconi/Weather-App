@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './WeatherCard.module.css';
 import { FaLongArrowAltUp, FaLongArrowAltDown, FaArrowsAltH } from "react-icons/fa";
 import { TiWeatherSunny, TiWeatherCloudy, TiWeatherShower } from "react-icons/ti";
+import { FaDroplet } from "react-icons/fa6";
+import { FaThermometerThreeQuarters } from "react-icons/fa";
 
 interface WeatherCardProps {
     city: string;
@@ -36,45 +38,69 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, country, temperature, f
 
     return (
         <div className={styles.weatherGlobal}>
-            <div className={styles.weatherCard}>
-                <div className={styles.leftContent}>
-                    <h2>{city}, {country}</h2>
-                    <h3>{temperature}°C</h3> <h4>{minTemp}°C</h4>
-                    <p>Sunrise: {sunrise.toLocaleTimeString()}</p>
-                    <p>Sunset: {sunset.toLocaleTimeString()}</p>
+            <div className={styles.topContent}>
+                <div className={styles.weatherCard}>
+                    <div className={styles.WeatherCardLeftContent}>
+                        <h2>{city}, {country}</h2>
+                        <div className={styles.temperatureBox}>
+                            <h2>{Math.round(temperature)}°C</h2>
+                            <h3>{Math.round(minTemp)}°C</h3>
+                        </div>
+                        <div className={styles.sunriseBox}>
+                            <div className={styles.sunriseInnerBox}>
+                                <p>Sunrise</p>
+                                <span>{sunrise.toLocaleTimeString()}</span>
+                            </div>
+                            <div className={styles.sunriseInnerBox}>
+                                <p>Sunset</p>
+                                <span>{sunset.toLocaleTimeString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.WeatherCardRightContent}>
+                        <img className={styles.weatherIcon} src={icon} alt="weather icon" />
+                        <p>{description}</p>
+                    </div>
+
+                    {/* */}
+                    {/* <p>Max:  | Min: </p> */}
+
+
                 </div>
-                <div className={styles.rightContent}>
-                    <img src={icon} alt="weather icon" />
-                    <p>{description}</p>
+                <div className={styles.feelsLikeCard}>
+                    <p>Feels Like</p>
+                    <p>{Math.round(feelsLike)}°C</p>
+                    <span className={styles.spanText}>
+                        <p><FaThermometerThreeQuarters /></p>
+                        the temperature
+                        you actually feel
+                    </span>
                 </div>
 
-                {/* */}
-                {/* <p>Max:  | Min: </p> */}
-
-
+                <div className={styles.humidityCard}>
+                    <p>Humidity</p>
+                    <p>{humidity}%</p>
+                    <span className={styles.spanText}>
+                        <p><FaDroplet /></p>
+                        amount of water
+                        vapor in the air
+                    </span>
+                </div>
             </div>
-            <div className={styles.feelsLikeCard}>
-                <p>Sensação Térmica: {feelsLike}°C</p>
-            </div>
-
-            <div className={styles.humidityCard}>
-                <p>Humidade: {humidity}%</p>
-            </div>
-
-            <div className={styles.forecastContainer}>
+            <div className={styles.bottomContent}>
                 {forecast && (
-                    <div className={styles.forecast}>
-                        <h4>Forecast:</h4>
+                    <div className={styles.forecastContainer}>
                         {forecast.map((day, index) => (
-                            <div key={index} className={styles.forecast}>
+                            <div key={index} className={styles.forecastCard}>
                                 <p>{getDayName(day.date)}</p>
                                 <img src={`http://openweathermap.org/img/wn/${day.icon}@2x.png`} alt="weather icon" />
-                                <p>{day.temp}°C {getTemperatureChangeIcon(temperature, day.temp)}</p>
+                                <span className={styles.forecastTemp}>{Math.round(day.temp)} °C {getTemperatureChangeIcon(temperature, day.temp)}</span>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
+
         </div>
     );
 }
